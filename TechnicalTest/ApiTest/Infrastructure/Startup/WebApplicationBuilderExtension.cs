@@ -1,4 +1,13 @@
-﻿using System.Reflection;
+﻿using App.Utils.EntityFrameworkCore.Configure;
+using Application.Services.ApiTest.Commands.InventoryCommands;
+using Application.Services.ApiTest.DtoModels.AutoMapper;
+using Application.Services.ApiTest.Queries.InventoryQueries;
+using Domain.Common.Constants;
+using Infrastructure.Persistence.Contexts.ApiTest;
+using Infrastructure.Persistence.Contexts.ApiTest.ContextInventory;
+using MediatR;
+using Microsoft.EntityFrameworkCore;
+using System.Reflection;
 
 namespace ApiTest.Infrastructure.Startup
 {
@@ -14,9 +23,16 @@ namespace ApiTest.Infrastructure.Startup
         /// <returns>a object WebApplicationBuilder with the result</returns>
         public static WebApplicationBuilder ConfigureService(this WebApplicationBuilder builder)
         {
+            builder.Services.AddScoped<IInventoryQueries, InventoryQueries>();
             builder.Services.AddControllers();
             builder.Services.AddEndpointsApiExplorer();
+            builder.Services.AddAutoMapper(typeof(ApiTestAutorMapper).GetTypeInfo().Assembly);
             builder.Services.AddSwagger(builder.Configuration, Assembly.GetExecutingAssembly().GetName().Name, AppContext.BaseDirectory);
+            builder.Services.AddDbContext<InventoryContext>(o => o.UseInMemoryDatabase("TechnicalTestDb"));
+            builder.Services.AddDbContext<ApiTestContext>(o => o.UseInMemoryDatabase("TechnicalTestDb"));
+            builder.Services.AddBaseRepository();
+            builder.Services.AddMediatR(x => x.WithEvaluator(y => y.Namespace != null && y.Namespace.StartsWith(ConstantsStartup.NAMESPACE_APP_SERVICES_TEST_API)),
+                                                typeof(CreateInventoryCommandHandler).GetTypeInfo().Assembly);
 
             return builder;
         }
