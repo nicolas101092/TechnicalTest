@@ -1,5 +1,5 @@
-﻿using Application.Services.ApiTest.DtoModels.Models.Inventory.Requests;
-using Application.Services.ApiTest.DtoModels.Models.Inventory.Responses;
+﻿using Application.Services.ApiTest.Commands.InventoryCommands;
+using Application.Services.ApiTest.DtoModels.Models.Inventory;
 
 namespace Application.Services.ApiTest.DtoModels.AutoMapper.ApiTestContext
 {
@@ -7,7 +7,7 @@ namespace Application.Services.ApiTest.DtoModels.AutoMapper.ApiTestContext
     {
         public MapInventory()
         {
-            CreateMap<DtoCreateInventoryRequest, Inventory>();
+            CreateMap<CreateInventoryCommand, Inventory>();
             CreateMap<Inventory, DtoGetListInventoriesResponse>();
         }
     }

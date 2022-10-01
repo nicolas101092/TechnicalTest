@@ -1,4 +1,6 @@
-﻿namespace ApiTest.Infrastructure.Startup
+﻿using App.Utils.Middlewares.Core.Middlewares;
+
+namespace ApiTest.Infrastructure.Startup
 {
     /// <summary>
     /// Class for configuring the api execution pipeline
@@ -11,6 +13,7 @@
         /// <param name="app">A WebApplication object for configuring the pipeline</param>
         public static void Configure(this WebApplication app)
         {
+            app.UseCaptureExceptionsMiddleware();
             app.UseHttpsRedirection();
             app.UseSwaggerIfDevelopment();
             app.MapControllers();

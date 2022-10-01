@@ -1,6 +1,5 @@
-﻿using Application.Services.ApiTest.DtoModels.Models.Inventory.Responses;
+﻿using Application.Services.ApiTest.DtoModels.Models.Inventory;
 using Infrastructure.Persistence.Contexts.ApiTest.ContextInventory;
-using Microsoft.EntityFrameworkCore;
 
 namespace Application.Services.ApiTest.Queries.InventoryQueries
 {

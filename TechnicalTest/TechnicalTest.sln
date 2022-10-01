@@ -17,9 +17,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Infrastructure", "Infrastru
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Nugets", "Nugets", "{E8CDED98-D197-4F0F-8FFD-63A95E5314FB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "App.Utils.EntityFrameworkCore", "App.Utils.EntityFrameworkCore\App.Utils.EntityFrameworkCore.csproj", "{BE2BE34F-3CE7-436E-914D-D62439EA76F2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "App.Utils.EntityFrameworkCore", "App.Utils.EntityFrameworkCore\App.Utils.EntityFrameworkCore.csproj", "{BE2BE34F-3CE7-436E-914D-D62439EA76F2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "App.Utils.Extensions", "App.Utils.Extensions\App.Utils.Extensions.csproj", "{73191738-84AD-451C-8F9D-D153DCC23566}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "App.Utils.Extensions", "App.Utils.Extensions\App.Utils.Extensions.csproj", "{73191738-84AD-451C-8F9D-D153DCC23566}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "App.Utils.Middlewares", "App.Utils.Middlewares\App.Utils.Middlewares.csproj", "{7C36C458-CA5E-491C-B186-A7B9D792611F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -51,6 +53,10 @@ Global
 		{73191738-84AD-451C-8F9D-D153DCC23566}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{73191738-84AD-451C-8F9D-D153DCC23566}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{73191738-84AD-451C-8F9D-D153DCC23566}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7C36C458-CA5E-491C-B186-A7B9D792611F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7C36C458-CA5E-491C-B186-A7B9D792611F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7C36C458-CA5E-491C-B186-A7B9D792611F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7C36C458-CA5E-491C-B186-A7B9D792611F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -62,6 +68,7 @@ Global
 		{3B969FAD-3968-4C27-9B9C-B5F2C09F4441} = {92A265AF-33A4-4CE3-ADAC-99B7185962E5}
 		{BE2BE34F-3CE7-436E-914D-D62439EA76F2} = {E8CDED98-D197-4F0F-8FFD-63A95E5314FB}
 		{73191738-84AD-451C-8F9D-D153DCC23566} = {E8CDED98-D197-4F0F-8FFD-63A95E5314FB}
+		{7C36C458-CA5E-491C-B186-A7B9D792611F} = {E8CDED98-D197-4F0F-8FFD-63A95E5314FB}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {2614C82A-2A6C-46F4-A4A2-9FEE4AD5871F}

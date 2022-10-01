@@ -1,12 +1,16 @@
 ﻿using App.Utils.EntityFrameworkCore.Configure;
 using Application.Services.ApiTest.Commands.InventoryCommands;
+using Application.Services.ApiTest.Commands.ItemCommands;
 using Application.Services.ApiTest.DtoModels.AutoMapper;
 using Application.Services.ApiTest.Queries.InventoryQueries;
+using Application.Services.ApiTest.Queries.ItemQueries;
 using Domain.Common.Constants;
+using FluentValidation;
 using Infrastructure.Persistence.Contexts.ApiTest;
 using Infrastructure.Persistence.Contexts.ApiTest.ContextInventory;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
+using System;
 using System.Reflection;
 
 namespace ApiTest.Infrastructure.Startup
@@ -24,6 +28,9 @@ namespace ApiTest.Infrastructure.Startup
         public static WebApplicationBuilder ConfigureService(this WebApplicationBuilder builder)
         {
             builder.Services.AddScoped<IInventoryQueries, InventoryQueries>();
+            builder.Services.AddScoped<IItemQueries, ItemQueries>();
+            builder.Services.AddScoped<IValidator<CreateInventoryCommand>, CreateInventoryValidator>();
+            builder.Services.AddScoped<IValidator<CreateItemCommand>, CreateItemValidator>();
             builder.Services.AddControllers();
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddAutoMapper(typeof(ApiTestAutorMapper).GetTypeInfo().Assembly);

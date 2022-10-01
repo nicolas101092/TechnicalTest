@@ -1,6 +1,5 @@
-﻿using Application.Services.ApiTest.DtoModels.Models.Inventory.Requests;
+﻿using Application.Services.ApiTest.Commands.InventoryCommands;
 using Application.Services.ApiTest.Queries.InventoryQueries;
-using MediatR;
 
 namespace ApiTest.Controllers
 {
@@ -33,19 +32,18 @@ namespace ApiTest.Controllers
         /// <summary>
         /// Add a new inventory
         /// </summary>
-        /// <returns>Returns an http status 201 with the requested resource</returns>
+        /// <returns>Returns an http status 200</returns>
         [HttpPost]
-        public async Task<IActionResult> Create(DtoCreateInventoryRequest request)
+        public async Task<IActionResult> Create(CreateInventoryCommand request)
         {
             var commandResult = await _mediator.Send(request);
-
             return commandResult ? Ok() : BadRequest();
         }
 
         /// <summary>
         /// Returns a list of inventories
         /// </summary>
-        /// <returns>Returns an http status 201 with the requested resource</returns>
+        /// <returns>Returns an http status 200 with the requested resource</returns>
         [HttpGet]
         public async Task<IActionResult> GetList()
         {

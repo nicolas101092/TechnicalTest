@@ -1,9 +1,8 @@
-﻿using Application.Services.ApiTest.DtoModels.Models.Inventory.Requests;
-using Infrastructure.Persistence.Contexts.ApiTest.ContextInventory;
+﻿using Infrastructure.Persistence.Contexts.ApiTest.ContextInventory;
 
 namespace Application.Services.ApiTest.Commands.InventoryCommands
 {
-    public class CreateInventoryCommandHandler : IRequestHandler<DtoCreateInventoryRequest, bool>
+    public class CreateInventoryCommandHandler : IRequestHandler<CreateInventoryCommand, bool>
     {
         #region Properties
 
@@ -24,8 +23,9 @@ namespace Application.Services.ApiTest.Commands.InventoryCommands
 
         #region IRequestHandler's implementation
 
-        public async Task<bool> Handle(DtoCreateInventoryRequest request, CancellationToken cancellationToken)
+        public async Task<bool> Handle(CreateInventoryCommand request, CancellationToken cancellationToken)
         {
+            BadRequestExtension.ThrowIfFluentValidation(request, new CreateInventoryValidator());
             var response = await _inventoryRepository.Add(_mapper.Map<Inventory>(request));
             return response is not null;
         }

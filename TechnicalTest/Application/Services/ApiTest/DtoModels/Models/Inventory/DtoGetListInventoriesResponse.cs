@@ -1,4 +1,4 @@
-﻿namespace Application.Services.ApiTest.DtoModels.Models.Inventory.Responses
+﻿namespace Application.Services.ApiTest.DtoModels.Models.Inventory
 {
     public class DtoGetListInventoriesResponse
     {
