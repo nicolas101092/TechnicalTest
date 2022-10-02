@@ -1,5 +1,4 @@
 ﻿using Domain.ApiTest.Events;
-using Domain.Common.Events;
 using Infrastructure.Persistence.Contexts.ApiTest.ContextInventory;
 
 namespace Application.Services.ApiTest.Commands.ItemCommands

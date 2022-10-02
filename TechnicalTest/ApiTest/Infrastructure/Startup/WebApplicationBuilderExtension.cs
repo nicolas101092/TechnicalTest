@@ -9,6 +9,7 @@ using FluentValidation;
 using Infrastructure.Persistence.Contexts.ApiTest;
 using Infrastructure.Persistence.Contexts.ApiTest.ContextInventory;
 using MediatR;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Reflection;
@@ -31,6 +32,7 @@ namespace ApiTest.Infrastructure.Startup
             builder.Services.AddScoped<IItemQueries, ItemQueries>();
             builder.Services.AddScoped<IValidator<CreateInventoryCommand>, CreateInventoryValidator>();
             builder.Services.AddScoped<IValidator<CreateItemCommand>, CreateItemValidator>();
+            builder.Services.AddSecurityConfiguration();
             builder.Services.AddControllers();
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddAutoMapper(typeof(ApiTestAutorMapper).GetTypeInfo().Assembly);

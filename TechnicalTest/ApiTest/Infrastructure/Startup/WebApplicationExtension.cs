@@ -1,4 +1,5 @@
 ﻿using App.Utils.Middlewares.Core.Middlewares;
+using Microsoft.AspNetCore.Authorization;
 
 namespace ApiTest.Infrastructure.Startup
 {
@@ -16,8 +17,11 @@ namespace ApiTest.Infrastructure.Startup
             app.UseCaptureLogsMiddleware();
             app.UseCaptureExceptionsMiddleware();
             app.UseHttpsRedirection();
+            app.UseAuthentication();
+            app.UseAuthorization();
             app.UseSwaggerIfDevelopment();
-            app.MapControllers();
+            app.MapControllers()
+               .RequireAuthorization(new AuthorizeAttribute());
             app.Run();
         }
     }

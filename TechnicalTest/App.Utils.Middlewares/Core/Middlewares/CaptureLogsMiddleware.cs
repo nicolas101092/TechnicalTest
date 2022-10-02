@@ -20,9 +20,9 @@ namespace App.Utils.Middlewares.Core.Middlewares
             var path = httpContext?.Request?.Path;
             var method = httpContext?.Request?.Method;
 
-            _logger.LogInformation($"Calling the endpoint {method} - {path}");
+            _logger.LogInformation($"[START] endpoint {method} - {path}");
             await _next(httpContext);
-            _logger.LogInformation($"Called the endpoint {method} - {path}");
+            _logger.LogInformation($"[FINISH] endpoint {method} - {path}");
         }
     }
 
