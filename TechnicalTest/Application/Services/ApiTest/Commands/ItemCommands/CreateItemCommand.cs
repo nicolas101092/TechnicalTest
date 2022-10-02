@@ -23,7 +23,7 @@
         {
             RuleFor(x => x.Name).NotEmpty().MinimumLength(2).MaximumLength(100);
             RuleFor(x => x.Description).NotEmpty().MinimumLength(2).MaximumLength(100);
-            RuleFor(x => x.ExpirationDate).GreaterThan(DateTime.UtcNow.Date);
+            RuleFor(x => x.ExpirationDate.Date).GreaterThan(DateTime.UtcNow.Date);
         }
     }
 }

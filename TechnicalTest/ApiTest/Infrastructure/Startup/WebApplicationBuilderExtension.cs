@@ -11,7 +11,6 @@ using Infrastructure.Persistence.Contexts.ApiTest.ContextInventory;
 using MediatR;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
-using System;
 using System.Reflection;
 
 namespace ApiTest.Infrastructure.Startup
@@ -28,10 +27,7 @@ namespace ApiTest.Infrastructure.Startup
         /// <returns>a object WebApplicationBuilder with the result</returns>
         public static WebApplicationBuilder ConfigureService(this WebApplicationBuilder builder)
         {
-            builder.Services.AddScoped<IInventoryQueries, InventoryQueries>();
-            builder.Services.AddScoped<IItemQueries, ItemQueries>();
-            builder.Services.AddScoped<IValidator<CreateInventoryCommand>, CreateInventoryValidator>();
-            builder.Services.AddScoped<IValidator<CreateItemCommand>, CreateItemValidator>();
+            builder.Services.AddScrutor(nameof(ApiTest));
             builder.Services.AddSecurityConfiguration();
             builder.Services.AddControllers();
             builder.Services.AddEndpointsApiExplorer();

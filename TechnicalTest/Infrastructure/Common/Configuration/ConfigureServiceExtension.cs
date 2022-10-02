@@ -1,5 +1,7 @@
-﻿using Domain.Common.Settings;
+﻿using Domain.Common.Constants;
+using Domain.Common.Settings;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using System.Reflection;
 
 namespace Infrastructure.Common.Configuration
 {
@@ -8,6 +10,30 @@ namespace Infrastructure.Common.Configuration
     /// </summary>
     public static class ConfigureServiceExtension
     {
+        /// <summary>
+        /// method for automate dependency injection
+        /// </summary>
+        /// <param name="services">a object IServiceCollection to inject the dependences</param>
+        /// <param name="apiName">the name of appi for filter of api-rest</param>
+        /// <returns>a object IServiceCollection with the result</returns>
+        public static IServiceCollection AddScrutor(this IServiceCollection services, string apiName)
+        {
+            services.Scan(s => s.FromAssemblies(Assembly.Load(ConstantsStartup.APPLICATION_PROJECT_NAME))
+                    .AddClasses(c => c.Where(e =>
+                    {
+                        bool nameSpace = e.Namespace != null && (e.Namespace.StartsWith($"{ConstantsStartup.APPLICATION_PROJECT_NAME}.Services.{apiName}"));
+
+                        bool fileName = e.Name.EndsWith(ConstantsStartup.QUERY_FILES)
+                                        || e.Name.EndsWith(ConstantsStartup.VALIDATOR);
+
+                        return nameSpace && fileName;
+                    }))
+                    .AsImplementedInterfaces()
+                    .WithScopedLifetime());
+
+            return services;
+        }
+
         /// <summary>
         /// Load the configuration of swagger in the method ConfigureService
         /// </summary>
