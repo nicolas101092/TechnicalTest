@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using System.Text.Json;
 
 namespace App.Utils.Extensions.Helpers
 {
@@ -18,5 +19,13 @@ namespace App.Utils.Extensions.Helpers
                                                 {
                                                     NullValueHandling = NullValueHandling.Ignore
                                                 });
+
+        public static T? DeserializeInsensitive<T>(string data) where T : class
+        {
+            return System.Text.Json.JsonSerializer.Deserialize<T>(data, new JsonSerializerOptions
+            {
+                PropertyNameCaseInsensitive = true
+            });
+        }
     }
 }

@@ -65,5 +65,7 @@
         /// method for saving changes using entity framework tracking
         /// </summary>
         Task SaveChanges();
+
+        Task AddListFromJsonFile(string urlFile);
     }
 }

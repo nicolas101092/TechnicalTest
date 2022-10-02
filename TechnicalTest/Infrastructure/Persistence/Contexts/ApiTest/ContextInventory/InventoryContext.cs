@@ -18,6 +18,10 @@ namespace Infrastructure.Persistence.Contexts.ApiTest.ContextInventory
 
         #endregion
 
+        public InventoryContext(DbContextOptions options) : base(options)
+        {
+        }
+
         public InventoryContext(DbContextOptions options, IPublisher publisher, ILogger<InventoryContext> logger) : base(options)
         {
             _publisher = publisher ?? throw new ArgumentNullException(nameof(publisher));

@@ -1,4 +1,6 @@
-﻿namespace App.Utils.EntityFrameworkCore.Core.BaseRepository
+﻿using App.Utils.Extensions.Helpers;
+
+namespace App.Utils.EntityFrameworkCore.Core.BaseRepository
 {
     public class BaseRepository<T, TContext> : IBaseRepository<T, TContext> where T : class
                                                                                   where TContext : DbContext
@@ -65,6 +67,15 @@
 
         public async Task SaveChanges() 
             => await _context.SaveChangesAsync();
+
+        public async Task AddListFromJsonFile(string urlFile)
+        {
+            List<T> list = JsonExtension.DeserializeInsensitive<List<T>>(File.ReadAllText(urlFile));
+            if (list != null)
+            {
+                await AddList(list);
+            }
+        }
 
         #endregion
     }
