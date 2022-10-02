@@ -1,5 +1,4 @@
 ﻿using Domain.Entities;
-using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Infrastructure.Persistence.Contexts.ApiTest.ContextInventory.Configuration
 {
@@ -7,6 +6,9 @@ namespace Infrastructure.Persistence.Contexts.ApiTest.ContextInventory.Configura
     {
         public void Configure(EntityTypeBuilder<Item> builder)
         {
+            builder.HasIndex(u => u.Name)
+                   .IsUnique();
+
             builder.HasOne(item => item.InventoryNavigation)
                    .WithMany(inventory => inventory.Items)
                    .HasForeignKey(item => item.IdInventory);

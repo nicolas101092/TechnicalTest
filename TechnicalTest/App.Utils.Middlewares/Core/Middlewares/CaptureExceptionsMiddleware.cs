@@ -1,5 +1,7 @@
 ﻿using App.Utils.Extensions.Helpers.PersonalExceptions;
 using App.Utils.Middlewares.Configure.Helpers;
+using App.Utils.Middlewares.Constants;
+using App.Utils.Middlewares.Core.PersonalExceptions;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
 
@@ -24,11 +26,19 @@ namespace App.Utils.Middlewares.Core.Middlewares
             {
                 await ProcessValidationException(httpContext: httpContext, exception: exception);
             }
+            catch (NotFoundException exception)
+            {
+                await ProcessException(httpContext: httpContext,
+                                       titleError: ConstantsBadStatus.TITTLE_NOTFOUND_EXCEPTION,
+                                       exception: exception,
+                                       statusCode: StatusCodes.Status404NotFound);
+            }
             catch (Exception exception)
             {
                 await ProcessException(httpContext: httpContext,
-                                       titleError: "Internal Server Error",
-                                       exception: exception);
+                                       titleError: ConstantsBadStatus.TITTLE_INTERNALSERVERERRROR_EXCEPTION,
+                                       exception: exception,
+                                       statusCode: StatusCodes.Status500InternalServerError);
             }
         }
 
@@ -37,10 +47,11 @@ namespace App.Utils.Middlewares.Core.Middlewares
         /// </summary>
         /// <param name="httpContext">HttpContext object type</param>
         /// <param name="titleError">a string with the error title</param>
+        /// <param name="statusCode">Status code</param>
         /// <param name="exception">the exception with the information</param>
-        public virtual async Task ProcessException(HttpContext httpContext, string titleError, Exception exception)
+        public virtual async Task ProcessException(HttpContext httpContext, string titleError, int statusCode, Exception exception)
         {
-            await httpContext.Response.WriteAsync(ProblemDetailsExtension.GetProblemDetails(httpContext, titleError, exception));
+            await httpContext.Response.WriteAsync(ProblemDetailsExtension.GetProblemDetails(httpContext, titleError, statusCode, exception));
         }
 
         /// <summary>

@@ -6,7 +6,7 @@
         public const string MESSAGE_NOT_VALID_EXCEPTION = "This request is not valid.";
         public const string MESSAGE_SEVERAL_ERRORS = "request with several errors";
         public const string MESSAGE_ITEM_NULL_EXCEPTION = "is null";
-        public const string MESSAGE_NOT_FOUND_EXCEPTION = "item not found";
+        public const string MESSAGE_NOT_FOUND_EXCEPTION = "Item not found";
         public const string MESSAGE_CONFLICTED_EXCEPTION = "item already exists";
         public const string GENERIC_MESSAGE_VALIDATION = "One or more validation errors occurred.";
     }

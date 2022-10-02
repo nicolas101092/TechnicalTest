@@ -33,6 +33,8 @@ namespace Application.Services.ApiTest.Queries.ItemQueries
         public async Task<DtoGetItemResponse?> GetByIdAsync(int id)
         {
             var item = await _itemRepository.GetAsNoTracking(x => x.Id == id).FirstOrDefaultAsync();
+            NotFoundExtension.ThrowIfNull(item, id);
+
             return _mapper.Map<DtoGetItemResponse>(item);
         }
 

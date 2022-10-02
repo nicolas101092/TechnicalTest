@@ -63,6 +63,21 @@ namespace ApiTest.Controllers
             return Ok(queryResult);
         }
 
+        /// <summary>
+        /// Add a new item
+        /// </summary>
+        /// <returns>Returns an http status 200</returns>
+        [HttpDelete("name")]
+        public async Task<IActionResult> RemoveByName(string name)
+        {
+            var commandResult = await _mediator.Send(new RemoveByNameItemCommand
+            {
+                Name = name
+            });
+
+            return commandResult ? NoContent() : BadRequest();
+        }
+
         #endregion
     }
 }

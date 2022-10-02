@@ -47,15 +47,15 @@ namespace App.Utils.Middlewares.Configure.Helpers
         /// <param name="httpContext">HttpContext object type</param>
         /// <param name="exception">the exception with the information</param>
         /// <returns>a string with the json result</returns>
-        public static string GetProblemDetails(HttpContext httpContext, string titleError, Exception exception)
+        public static string GetProblemDetails(HttpContext httpContext, string titleError, int statusCode, Exception exception)
         {
-            httpContext = httpContext.InitResponse(StatusCodes.Status500InternalServerError);
+            httpContext = httpContext.InitResponse(statusCode);
 
             var model = new ProblemDetails
             {
-                Type = $"https://httpstatuses.com/{httpContext.Response.StatusCode}",
+                Type = $"https://httpstatuses.com/{statusCode}",
                 Title = titleError,
-                Status = StatusCodes.Status500InternalServerError,
+                Status = statusCode,
                 Detail = exception.Message,
                 Instance = httpContext?.Request?.Path
             };
