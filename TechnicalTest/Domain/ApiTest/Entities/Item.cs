@@ -1,8 +1,9 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Domain.Common.Events;
+using System.ComponentModel.DataAnnotations;
 
-namespace Domain.Entities
+namespace Domain.ApiTest.Entities
 {
-    public class Item
+    public class Item : IHashDomainEvent
     {
         #region Properties
 
@@ -26,6 +27,12 @@ namespace Domain.Entities
         #region Relations
 
         public virtual Inventory InventoryNavigation { get; set; } = null!;
+
+        #endregion
+
+        #region Domain Events
+
+        public List<DomainEvent> DomainEvents { get; set; } = new List<DomainEvent>();
 
         #endregion
     }

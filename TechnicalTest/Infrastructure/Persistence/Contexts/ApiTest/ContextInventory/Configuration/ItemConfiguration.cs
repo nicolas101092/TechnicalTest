@@ -1,4 +1,4 @@
-﻿using Domain.Entities;
+﻿using Domain.ApiTest.Entities;
 
 namespace Infrastructure.Persistence.Contexts.ApiTest.ContextInventory.Configuration
 {
@@ -12,6 +12,8 @@ namespace Infrastructure.Persistence.Contexts.ApiTest.ContextInventory.Configura
             builder.HasOne(item => item.InventoryNavigation)
                    .WithMany(inventory => inventory.Items)
                    .HasForeignKey(item => item.IdInventory);
+
+            builder.Ignore(x => x.DomainEvents);
         }
     }
 }

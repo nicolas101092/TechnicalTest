@@ -13,6 +13,7 @@ namespace ApiTest.Infrastructure.Startup
         /// <param name="app">A WebApplication object for configuring the pipeline</param>
         public static void Configure(this WebApplication app)
         {
+            app.UseCaptureLogsMiddleware();
             app.UseCaptureExceptionsMiddleware();
             app.UseHttpsRedirection();
             app.UseSwaggerIfDevelopment();
